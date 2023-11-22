@@ -2,6 +2,8 @@
 
 Welcome to the Car Exhibition CMS project! This project is designed to manage and display information about car exhibitions in Germany. It consists of both a Django backend for managing data and a React frontend for an engaging user interface. This is ongoing public project which is a part of my public portfolio. It was created, among others, for the purpose of demonstrating my coding skills for clients who are interested to hire me.
 
+![Demo](./demo.gif)
+
 ## Table of Contents
 
 - [Features](#features)
