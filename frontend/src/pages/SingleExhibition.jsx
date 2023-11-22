@@ -7,10 +7,11 @@ export default function SingleExhibition() {
   const { name } = useParams();
   const [exhibition, setExhibition] = useState(null);
   const [cars, setCars] = useState([]);
+  const { REACT_APP_API_ENDPOINT } = process.env;
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/exhibition/${name}/`)
+      .get(`${REACT_APP_API_ENDPOINT}/api/exhibition/${name}/`)
       .then((response) => {
         setExhibition(response.data);
       })
@@ -19,7 +20,7 @@ export default function SingleExhibition() {
       });
 
     axios
-      .get(`http://127.0.0.1:8000/api/exhibition/${name}/cars/`)
+      .get(`${REACT_APP_API_ENDPOINT}/api/exhibition/${name}/cars/`)
       .then((response) => {
         setCars(response.data);
       })
@@ -56,7 +57,7 @@ export default function SingleExhibition() {
                   >
                     {cars[index] && (
                       <img
-                        src={`http://127.0.0.1:8000${cars[index].image}`}
+                        src={`${REACT_APP_API_ENDPOINT}${cars[index].image}`}
                         loading="lazy"
                         alt={cars[index].name}
                         class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"

@@ -1,21 +1,36 @@
 version: "3"
 
 services:
-  web:
-    container_name: exhibitions_cms
+  backend:
+    container_name: car-exhibitions-backend
     build: .
-    command: >
-      /bin/sh -c "poetry run python manage.py makemigrations &&
-                  poetry run python manage.py migrate &&
-                  poetry run python manage.py runserver 0.0.0.0:8000"
+    command: /bin/sh -c "/backend/entrypoint.sh"
+
     restart: always
     volumes:
-      - .:/exhibitions
+      - .:/backend
     ports:
       - "8000:8000"
     networks:
-      - exhibitions-cms-net
+      - car-exhibitions-net
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: car-exhibitions-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT}
+    volumes:
+      - ./frontend:/frontend 
+    networks:
+      - car-exhibitions-net
 
 networks:
-  exhibitions-cms-net:
+  car-exhibitions-net:
     driver: bridge
+
+    

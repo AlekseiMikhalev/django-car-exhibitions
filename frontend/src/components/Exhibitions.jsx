@@ -6,10 +6,11 @@ import { ExhibitionsContext } from "../contexts/ExhibitionsContext";
 export default function Exhibitions() {
   const [exhibitions, setExhibitions] = useState([]);
   const exhibitionsContext = useContext(ExhibitionsContext);
+  const { REACT_APP_API_ENDPOINT } = process.env;
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/exhibitions/")
+      .get(`${REACT_APP_API_ENDPOINT}/api/exhibitions/`)
       .then((response) => {
         setExhibitions(response.data);
       })
@@ -35,7 +36,7 @@ export default function Exhibitions() {
               <div key={exhibition.title} className="group relative">
                 <div className="relative h-80 w-full overflow-hidden rounded-lg bg-white sm:aspect-h-1 sm:aspect-w-2 lg:aspect-h-1 lg:aspect-w-1 group-hover:opacity-75 sm:h-64">
                   <img
-                    src={`http://127.0.0.1:8000${exhibition.cover_image}`}
+                    src={`${REACT_APP_API_ENDPOINT}${exhibition.cover_image}`}
                     alt={exhibition.title}
                     className="h-full w-full object-cover object-center"
                   />
@@ -51,7 +52,7 @@ export default function Exhibitions() {
                 </p>
                 <div className="mt-4 items-center col-2 flex justify-between">
                   <a
-                    href={`/exhibition/${exhibition.title}`}
+                    href={`${REACT_APP_API_ENDPOINT}${exhibition.title}`}
                     className="text-blue-500 hover:text-blue-600 font-light text-sm"
                   >
                     Read more
