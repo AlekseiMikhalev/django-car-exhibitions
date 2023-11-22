@@ -14,7 +14,7 @@ function App() {
     <div className="bg-secondary-light dark:bg-primary-dark transition duration-300">
       <Router>
         <AppHeader />
-        <Suspense fallback={""}>
+        <Suspense fallback={<div>Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/exhibition/:name" element={<SingleExhibition />} />

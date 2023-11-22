@@ -3,7 +3,7 @@ FROM python:3.11-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /cars_exhibition_cms
+WORKDIR /backend
 
 RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
@@ -14,6 +14,8 @@ COPY . .
 
 RUN pip install poetry \
     && poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-root
+    && poetry install --no-interaction --no-root 
+
+ENTRYPOINT ["/bin/sh", "-c", "chmod +x /backend/entrypoint.sh && /backend/entrypoint.sh"]
 
 EXPOSE 8000

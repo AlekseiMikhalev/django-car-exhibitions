@@ -3,12 +3,13 @@ version: "3"
 services:
   backend:
     container_name: car-exhibitions-backend
-    build: .
+    build: 
+      context: ./backend
     command: /bin/sh -c "/backend/entrypoint.sh"
 
     restart: always
     volumes:
-      - .:/backend
+      - ./backend:/backend
     ports:
       - "8000:8000"
     networks:
@@ -32,5 +33,3 @@ services:
 networks:
   car-exhibitions-net:
     driver: bridge
-
-    
