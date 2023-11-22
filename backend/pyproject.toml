@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cars exhibition cms"
+version = "0.1.0"
+description = "Content management system for car exhibitions"
+authors = ["Aleksei Mikhalev <aleks_mihalev@list.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.7"
+pillow = "^10.1.0"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^4.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
